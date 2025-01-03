@@ -3,9 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3745609A-7097-46F5-840D-CF6D8A8FBFD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{86FB5769-9CFC-4146-BE22-8403DAF820F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "catalog", "catalog", "{FFD73E83-84A4-4077-8533-39E506DF1297}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Catalog.Api", "CourseManagementSystemMicroservice.Catalog.Api\CourseManagementSystemMicroservice.Catalog.Api.csproj", "{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2F9DB8B0-27AA-4B48-BF9B-A87DE8B7073A}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F9DB8B0-27AA-4B48-BF9B-A87DE8B7073A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F9DB8B0-27AA-4B48-BF9B-A87DE8B7073A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F9DB8B0-27AA-4B48-BF9B-A87DE8B7073A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F9DB8B0-27AA-4B48-BF9B-A87DE8B7073A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{86FB5769-9CFC-4146-BE22-8403DAF820F8} = {3745609A-7097-46F5-840D-CF6D8A8FBFD7}
+		{FFD73E83-84A4-4077-8533-39E506DF1297} = {86FB5769-9CFC-4146-BE22-8403DAF820F8}
+		{9F58F13F-1F4A-45C3-AAD2-6DB9279DD2D9} = {FFD73E83-84A4-4077-8533-39E506DF1297}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09ED23F3-9934-40A4-8AC9-E007BCD92C25}
