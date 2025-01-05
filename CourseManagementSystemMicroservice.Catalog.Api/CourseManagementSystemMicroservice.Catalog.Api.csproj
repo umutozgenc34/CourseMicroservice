@@ -16,4 +16,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\CourseManagementSystemMicroservice.Shared\CourseManagementSystemMicroservice.Shared.csproj" />
+    <ProjectReference Include="..\CourseManagementSystemMicroservice.Shared\CourseManagementSystemMicroservice.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
