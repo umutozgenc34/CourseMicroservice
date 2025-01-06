@@ -20,7 +20,7 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
         var anyCategory = await _context.Categories.AnyAsync(x => x.Name == request.Name, cancellationToken);
         if (anyCategory)
         {
-            ServiceResult<CreateCategoryResponse>.Error("Category name already exists.", $"Category : {request.Name}",HttpStatusCode.BadRequest);
+            return ServiceResult<CreateCategoryResponse>.Error("Category name already exists.", $"Category : {request.Name}",HttpStatusCode.BadRequest);
         }
 
         var category = new Category
