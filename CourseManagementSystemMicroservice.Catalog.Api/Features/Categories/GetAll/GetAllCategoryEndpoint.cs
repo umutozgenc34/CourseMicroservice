@@ -1,6 +1,5 @@
 ﻿
 using CourseManagementSystemMicroservice.Shared.Extensions;
-using MediatR;
 
 namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.GetAll;
 

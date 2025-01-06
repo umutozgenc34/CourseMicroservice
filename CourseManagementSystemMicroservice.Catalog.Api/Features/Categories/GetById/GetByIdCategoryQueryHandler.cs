@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Dtos;
+﻿using CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Dtos;
 using CourseManagementSystemMicroservice.Catalog.Api.Repositories;
-using CourseManagementSystemMicroservice.Shared;
-using MediatR;
-using System.Net;
 
 namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.GetById;
 

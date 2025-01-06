@@ -1,8 +1,5 @@
 ﻿using CourseManagementSystemMicroservice.Shared.Extensions;
 using CourseManagementSystemMicroservice.Shared.Filters;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
 
 namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Create;
 

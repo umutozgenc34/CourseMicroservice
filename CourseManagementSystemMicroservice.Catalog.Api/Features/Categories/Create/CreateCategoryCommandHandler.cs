@@ -1,11 +1,5 @@
-﻿using CourseManagementSystemMicroservice.Catalog.Api.Repositories;
-using CourseManagementSystemMicroservice.Shared;
-using MassTransit;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Net;
-
+﻿using CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Dtos;
+using CourseManagementSystemMicroservice.Catalog.Api.Repositories;
 namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Create;
 
 public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, ServiceResult<CreateCategoryResponse>>

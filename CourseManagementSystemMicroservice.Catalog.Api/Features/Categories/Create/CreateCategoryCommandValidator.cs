@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Create;
+﻿namespace CourseManagementSystemMicroservice.Catalog.Api.Features.Categories.Create;
 
 public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>  
 {
