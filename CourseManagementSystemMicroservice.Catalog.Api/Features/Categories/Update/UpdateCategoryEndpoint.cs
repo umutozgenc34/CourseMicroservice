@@ -9,6 +9,7 @@ public static class UpdateCategoryEndpoint
     {
         group.MapPut("/", async (UpdateCategoryCommand command, IMediator mediator) =>
         (await mediator.Send(command)).ToGenericResult())
+        .WithName("UpdateCategory")
         .AddEndpointFilter<ValidationFilter<UpdateCategoryCommand>>();
 
         return group;
