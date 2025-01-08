@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDatabaseServiceExtensions();
 builder.Services.AddCommonServiceExtension(typeof(CatalogAssembly));
 builder.Services.AddOptionExtensions();
+builder.Services.AddVersioningExtension();
 
 var app = builder.Build();
 
@@ -20,8 +21,8 @@ app.AddSeedDataExtension().ContinueWith(x => // uygulama hýzlý ayaða kalksýn diy
     Console.WriteLine(x.IsFaulted ? x.Exception?.Message : "Seed data has been saved successfully");
 });
 
-app.AddCategoryGroupEndpointExtension();
-app.AddCourseGroupEndpointExtension();
+app.AddCategoryGroupEndpointExtension(app.AddVersionSetExtension());
+app.AddCourseGroupEndpointExtension(app.AddVersionSetExtension());
 
 if (app.Environment.IsDevelopment())
 {

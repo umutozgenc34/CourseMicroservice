@@ -7,7 +7,8 @@ public static class GetAllCourseEndpoint
     public static RouteGroupBuilder GetAllCoursesGroupItemEndpoint(this RouteGroupBuilder group)
     {
         group.MapGet("/", async (IMediator mediator) => (await mediator.Send(new GetAllCourseQuery())).ToGenericResult())
-            .WithName("GetAllCourses");
+            .WithName("GetAllCourses")
+            .MapToApiVersion(1, 0);
 
         return group;
     }

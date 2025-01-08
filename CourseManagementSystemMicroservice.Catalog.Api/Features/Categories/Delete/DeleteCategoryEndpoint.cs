@@ -8,6 +8,7 @@ public static class DeleteCategoryEndpoint
     {
         group.MapDelete("/{id:guid}", async (Guid id, IMediator mediator) =>
             (await mediator.Send(new DeleteCategoryCommand(id))).ToGenericResult())
+            .MapToApiVersion(1, 0)
             .WithName("DeleteCategory");
         return group;
     }
