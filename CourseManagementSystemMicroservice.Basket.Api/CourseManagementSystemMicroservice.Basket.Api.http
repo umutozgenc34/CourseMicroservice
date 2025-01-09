@@ -4,3 +4,5 @@ GET {{CourseManagementSystemMicroservice.Basket.Api_HostAddress}}/weatherforecas
 Accept: application/json
 
 ###
+
+// courseId: 08dd2f78-48b2-47bb-b025-aa525a8a0000
