@@ -1,7 +1,7 @@
-﻿using FluentValidation;
+﻿using CourseManagementSystemMicroservice.Shared.Services;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 
 namespace CourseManagementSystemMicroservice.Shared.Extensions;
 
@@ -14,6 +14,8 @@ public static class CommonServiceExtension
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining(assembly);
         services.AddAutoMapper(assembly);
+
+        services.AddScoped<IIdentityService, IdentityServiceFake>();
 
         return services;
     }

@@ -1,18 +1,19 @@
 ﻿using CourseManagementSystemMicroservice.Basket.Api.Const;
 using CourseManagementSystemMicroservice.Basket.Api.Dtos;
 using CourseManagementSystemMicroservice.Shared;
+using CourseManagementSystemMicroservice.Shared.Services;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets.AddBasketItem;
 
-public class AddBasketItemCommandHandler(IDistributedCache distributedCache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+public class AddBasketItemCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<AddBasketItemCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
     {
         // TODO: chaneg userId to real userId
-        Guid userId = Guid.NewGuid();
+        Guid userId = identityService.GetUserId;
         var cacheKey = string.Format(BasketConsts.BacketCacheKey, userId);
 
         var basketAsString = await distributedCache.GetStringAsync(cacheKey, token: cancellationToken);
