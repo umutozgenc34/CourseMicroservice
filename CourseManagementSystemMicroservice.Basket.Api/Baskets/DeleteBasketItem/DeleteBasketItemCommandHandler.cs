@@ -22,7 +22,7 @@ public class DeleteBasketItemCommandHandler(IDistributedCache distributedCache,I
             return ServiceResult.ErrorAsNotFound();
         }
 
-        var currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+        var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
         var basketItemToDelete = currentBasket!.Items.FirstOrDefault(x => x.Id == request.Id);
 

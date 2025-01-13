@@ -1,4 +1,5 @@
 ﻿using CourseManagementSystemMicroservice.Basket.Api.Const;
+using CourseManagementSystemMicroservice.Basket.Api.Data;
 using CourseManagementSystemMicroservice.Basket.Api.Dtos;
 using CourseManagementSystemMicroservice.Shared;
 using CourseManagementSystemMicroservice.Shared.Services;
@@ -18,19 +19,19 @@ public class AddBasketItemCommandHandler(IDistributedCache distributedCache,IIde
 
         var basketAsString = await distributedCache.GetStringAsync(cacheKey, token: cancellationToken);
 
-        BasketDto? currentBasket;
+        Data.Basket? currentBasket;
 
-        var newBasketItem = new BasketItemDto(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice, null);
+        var newBasketItem = new BasketItem(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice, null);
 
         if (string.IsNullOrEmpty(basketAsString))
         {
-            currentBasket = new BasketDto(userId, [newBasketItem]);
+            currentBasket = new Data.Basket(userId, [newBasketItem]);
             await CreateCacheAsync(currentBasket, cacheKey, cancellationToken);
 
             return ServiceResult.SuccessAsNoContent();
         }
 
-        currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+        currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
         var existingBasketItem = currentBasket!.Items.FirstOrDefault(x => x.Id == request.CourseId);
 
@@ -45,9 +46,9 @@ public class AddBasketItemCommandHandler(IDistributedCache distributedCache,IIde
         return ServiceResult.SuccessAsNoContent();
     }
 
-    private async Task CreateCacheAsync(BasketDto basketDto, string cacheKey, CancellationToken cancellationToken)
+    private async Task CreateCacheAsync(Data.Basket basket, string cacheKey, CancellationToken cancellationToken)
     {
-        var basketAsString = JsonSerializer.Serialize(basketDto);
+        var basketAsString = JsonSerializer.Serialize(basket);
         await distributedCache.SetStringAsync(cacheKey, basketAsString, token: cancellationToken);
     }
 }

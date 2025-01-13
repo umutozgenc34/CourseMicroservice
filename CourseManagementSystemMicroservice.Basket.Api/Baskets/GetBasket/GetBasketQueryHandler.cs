@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets.GetBasket;
 
-public class GetBasketQueryHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>>
+public class GetBasketQueryHandler(IDistributedCache distributedCache,IIdentityService identityService,IMapper mapper) : IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>>
 {
     public async Task<ServiceResult<BasketDto>> Handle(GetBasketQuery request, CancellationToken cancellationToken)
     {
@@ -22,8 +22,10 @@ public class GetBasketQueryHandler(IDistributedCache distributedCache,IIdentityS
             return ServiceResult<BasketDto>.Error("Basket not found.", HttpStatusCode.NotFound);
         }
         
-        var basket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+        var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
-        return ServiceResult<BasketDto>.SuccessAsOk(basket);   
+        var basketAsDto = mapper.Map<BasketDto>(basket);
+
+        return ServiceResult<BasketDto>.SuccessAsOk(basketAsDto);   
     }
 }
