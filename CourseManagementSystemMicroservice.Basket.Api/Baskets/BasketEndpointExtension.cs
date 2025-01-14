@@ -3,6 +3,7 @@ using CourseManagementSystemMicroservice.Basket.Api.Baskets.AddBasketItem;
 using CourseManagementSystemMicroservice.Basket.Api.Baskets.ApplyDiscountCoupon;
 using CourseManagementSystemMicroservice.Basket.Api.Baskets.DeleteBasketItem;
 using CourseManagementSystemMicroservice.Basket.Api.Baskets.GetBasket;
+using CourseManagementSystemMicroservice.Basket.Api.Baskets.RemoveDiscountCoupon;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets;
 
@@ -15,6 +16,7 @@ public static class BasketEndpointExtension
             .AddBasketItemGroupItemEndpoint()
             .DeleteBasketItemGroupItemEndpoint()
             .GetBasketGroupItemEndpoint()
-            .ApplyDiscountCouponGroupItemEndpoint();
+            .ApplyDiscountCouponGroupItemEndpoint()
+            .RemoveDiscountCouponGroupItemEndpoint();
     }
 }
