@@ -1,35 +1,33 @@
-﻿using CourseManagementSystemMicroservice.Basket.Api.Const;
+﻿using CourseManagementSystemMicroservice.Basket.Api.Baskets.Services;
+using CourseManagementSystemMicroservice.Basket.Api.Dtos;
 using CourseManagementSystemMicroservice.Shared;
-using CourseManagementSystemMicroservice.Shared.Services;
 using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
+using System.Net;
 using System.Text.Json;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets.ApplyDiscountCoupon;
 
-public class ApplyDiscountCouponCommandHandler(IIdentityService identityService, IDistributedCache distributedCache) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
+public class ApplyDiscountCouponCommandHandler(BasketService basketService) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(ApplyDiscountCouponCommand request, CancellationToken cancellationToken)
     {
-        var cacheKey = string.Format(BasketConsts.BacketCacheKey, identityService.GetUserId);
-        var basketAsString = await distributedCache.GetStringAsync(cacheKey, cancellationToken);
+        var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
-        if (string.IsNullOrEmpty(basketAsString))
+        if (string.IsNullOrEmpty(basketAsJson))
         {
-            return ServiceResult.ErrorAsNotFound();
+            return ServiceResult<BasketDto>.Error("Basket not found", HttpStatusCode.NotFound);
         }
 
-        var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
+        var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson)!;
 
         if (!basket.Items.Any())
         {
-            return ServiceResult.ErrorAsNotFound();
+            return ServiceResult<BasketDto>.Error("Basket item not found", HttpStatusCode.NotFound);
         }
 
         basket.ApplyNewDiscount(request.Coupon, request.DiscountRate);
-
-        basketAsString = JsonSerializer.Serialize(basket);
-        await distributedCache.SetStringAsync(cacheKey, basketAsString, cancellationToken);
+        basketAsJson = JsonSerializer.Serialize(basket);
+        await basketService.CreateBasketCacheAsync(basket, cancellationToken);
 
         return ServiceResult.SuccessAsNoContent();
     }

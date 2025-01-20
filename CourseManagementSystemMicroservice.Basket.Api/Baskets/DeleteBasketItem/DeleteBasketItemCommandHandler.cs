@@ -1,40 +1,33 @@
-﻿using CourseManagementSystemMicroservice.Basket.Api.Const;
-using CourseManagementSystemMicroservice.Basket.Api.Dtos;
+﻿using CourseManagementSystemMicroservice.Basket.Api.Baskets.Services;
 using CourseManagementSystemMicroservice.Shared;
-using CourseManagementSystemMicroservice.Shared.Services;
 using MediatR;
-using Microsoft.Extensions.Caching.Distributed;
+using System.Net;
 using System.Text.Json;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets.DeleteBasketItem;
 
-public class DeleteBasketItemCommandHandler(IDistributedCache distributedCache,IIdentityService ıdentityService) : IRequestHandler<DeleteBasketItemCommand, ServiceResult>
+public class DeleteBasketItemCommandHandler(BasketService basketService) : IRequestHandler<DeleteBasketItemCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(DeleteBasketItemCommand request, CancellationToken cancellationToken)
     {
-        Guid userID = ıdentityService.GetUserId;
-        var cacheKey = string.Format(BasketConsts.BacketCacheKey, userID);
+        var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
-        var basketAsString = await distributedCache.GetStringAsync(cacheKey, token: cancellationToken);
-
-        if (string.IsNullOrEmpty(basketAsString))
+        if (string.IsNullOrEmpty(basketAsJson))
         {
-            return ServiceResult.ErrorAsNotFound();
+            return ServiceResult.Error("Basket not found", HttpStatusCode.NotFound);
         }
 
-        var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
+        var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
         var basketItemToDelete = currentBasket!.Items.FirstOrDefault(x => x.Id == request.Id);
-
         if (basketItemToDelete is null)
         {
-            return ServiceResult.ErrorAsNotFound();
+            return ServiceResult.Error("Basket item not found", HttpStatusCode.NotFound);
         }
 
         currentBasket.Items.Remove(basketItemToDelete);
-
-        basketAsString = JsonSerializer.Serialize(currentBasket);
-        await distributedCache.SetStringAsync(cacheKey, basketAsString, token: cancellationToken);
+        basketAsJson = JsonSerializer.Serialize(currentBasket);
+        await basketService.CreateBasketCacheAsync(currentBasket, cancellationToken);
 
         return ServiceResult.SuccessAsNoContent();
     }

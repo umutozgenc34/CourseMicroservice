@@ -1,23 +1,21 @@
-﻿using CourseManagementSystemMicroservice.Shared.Services;
+﻿using CourseManagementSystemMicroservice.Basket.Api.Baskets.Services;
 using CourseManagementSystemMicroservice.Shared;
+using CourseManagementSystemMicroservice.Shared.Services;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Net;
 using System.Text.Json;
-using CourseManagementSystemMicroservice.Basket.Api.Const;
 
 namespace CourseManagementSystemMicroservice.Basket.Api.Baskets.RemoveDiscountCoupon;
 
 public class RemoveDiscountCouponCommandHandler(
-     IIdentityService identityService,
-     IDistributedCache distributedCache
+     BasketService basketService
      ) : IRequestHandler<RemoveDiscountCouponCommand, ServiceResult>
 {
     public async Task<ServiceResult> Handle(RemoveDiscountCouponCommand request,
         CancellationToken cancellationToken)
     {
-        var cacheKey = string.Format(BasketConsts.BacketCacheKey, identityService.GetUserId);
-        var basketAsJson = await distributedCache.GetStringAsync(cacheKey,token:cancellationToken);
+        var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
         if (string.IsNullOrEmpty(basketAsJson))
         {
@@ -27,11 +25,8 @@ public class RemoveDiscountCouponCommandHandler(
         var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
         basket!.ClearDiscount();
-
-
         basketAsJson = JsonSerializer.Serialize(basket);
-
-        await distributedCache.SetStringAsync(cacheKey,basketAsJson, token:cancellationToken);
+        await basketService.CreateBasketCacheAsync(basket, cancellationToken);
 
         return ServiceResult.SuccessAsNoContent();
     }
