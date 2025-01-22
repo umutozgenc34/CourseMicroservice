@@ -1,4 +1,5 @@
 using CourseManagementSystemMicroservice.Discount.Api;
+using CourseManagementSystemMicroservice.Discount.Api.Features.Discounts;
 using CourseManagementSystemMicroservice.Discount.Api.Options;
 using CourseManagementSystemMicroservice.Discount.Api.Repositories;
 using CourseManagementSystemMicroservice.Shared.Extensions;
@@ -22,6 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.AddDiscountGroupEndpointExtension(app.AddVersionSetExtension());
 
 app.Run();
 
