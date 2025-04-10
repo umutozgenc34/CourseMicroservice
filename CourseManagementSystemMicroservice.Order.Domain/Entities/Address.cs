@@ -1,0 +1,10 @@
+﻿namespace CourseManagementSystemMicroservice.Order.Domain.Entities;
+
+public class Address
+{
+    public string Province { get; set; } = null!;
+    public string District { get; set; } = null!;
+    public string Street { get; set; } = null!;
+    public string ZipCode { get; set; } = null!;
+    public string Line { get; set; } = null!;
+}
