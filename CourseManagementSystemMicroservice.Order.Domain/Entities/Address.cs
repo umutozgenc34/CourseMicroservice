@@ -1,6 +1,6 @@
 ﻿namespace CourseManagementSystemMicroservice.Order.Domain.Entities;
 
-public class Address
+public class Address : BaseEntity<int>
 {
     public string Province { get; set; } = null!;
     public string District { get; set; } = null!;
