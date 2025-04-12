@@ -6,7 +6,7 @@ using CourseManagementSystemMicroservice.Shared;
 using MediatR;
 using System.Net;
 
-namespace CourseManagementSystemMicroservice.Order.Application.Features.Orders.Create;
+namespace CourseManagementSystemMicroservice.Order.Application.Features.Orders.CreateOrder;
 
 public class CreateOrderCommandHandler(IOrderRepository orderRepository, IIdentityService identityService, IUnitOfWork unitOfWork) : IRequestHandler<CreateOrderCommand, ServiceResult>
 {

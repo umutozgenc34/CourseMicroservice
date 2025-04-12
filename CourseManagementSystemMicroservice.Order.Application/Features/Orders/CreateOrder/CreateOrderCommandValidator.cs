@@ -1,7 +1,7 @@
 ﻿using CourseManagementSystemMicroservice.Order.Application.Features.Orders.Dtos;
 using FluentValidation;
 
-namespace CourseManagementSystemMicroservice.Order.Application.Features.Orders.Create;
+namespace CourseManagementSystemMicroservice.Order.Application.Features.Orders.CreateOrder;
 
 public class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
 {

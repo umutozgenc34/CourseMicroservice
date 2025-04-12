@@ -1,4 +1,4 @@
-﻿using CourseManagementSystemMicroservice.Order.Application.Features.Orders.Create;
+﻿using CourseManagementSystemMicroservice.Order.Application.Features.Orders.CreateOrder;
 using CourseManagementSystemMicroservice.Shared.Extensions;
 using CourseManagementSystemMicroservice.Shared.Filters;
 using MediatR;
