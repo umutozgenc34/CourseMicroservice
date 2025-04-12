@@ -16,7 +16,7 @@ public static class CreateDiscountEndpoint
             .Produces<Guid>(StatusCodes.Status201Created)
             .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
             .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-            .AddEndpointFilter<ValidationFilter<CreateDiscountCommandValidator>>();
+            .AddEndpointFilter<ValidationFilter<CreateDiscountCommand>>();
 
         return group;
     }
