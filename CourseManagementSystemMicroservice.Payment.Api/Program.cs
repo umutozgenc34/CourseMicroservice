@@ -1,5 +1,7 @@
 using CourseManagementSystemMicroservice.Payment.Api;
+using CourseManagementSystemMicroservice.Payment.Api.Repositories;
 using CourseManagementSystemMicroservice.Shared.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCommonServiceExtension(typeof(PaymentAssembly));
 builder.Services.AddVersioningExtension();
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseInMemoryDatabase("payment-inmemory-db");
+});
 
 var app = builder.Build();
 
