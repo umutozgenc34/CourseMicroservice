@@ -37,13 +37,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{128D7506-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{55CF891E-1F6C-4783-A991-5173BDDAF29A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Order.Api", "CourseManagementSystemMicroservice.Order.Api\CourseManagementSystemMicroservice.Order.Api.csproj", "{3F04E9F4-7313-48B2-AEEC-FB13A9EBC55C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagementSystemMicroservice.Order.Api", "CourseManagementSystemMicroservice.Order.Api\CourseManagementSystemMicroservice.Order.Api.csproj", "{3F04E9F4-7313-48B2-AEEC-FB13A9EBC55C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Order.Domain", "CourseManagementSystemMicroservice.Order.Domain\CourseManagementSystemMicroservice.Order.Domain.csproj", "{6434C2DB-8913-4D00-957C-6754C077E675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagementSystemMicroservice.Order.Domain", "CourseManagementSystemMicroservice.Order.Domain\CourseManagementSystemMicroservice.Order.Domain.csproj", "{6434C2DB-8913-4D00-957C-6754C077E675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Order.Application", "CourseManagementSystemMicroservice.Order.Application\CourseManagementSystemMicroservice.Order.Application.csproj", "{51C5ECE2-1535-4C0E-813A-B23BF0A83247}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagementSystemMicroservice.Order.Application", "CourseManagementSystemMicroservice.Order.Application\CourseManagementSystemMicroservice.Order.Application.csproj", "{51C5ECE2-1535-4C0E-813A-B23BF0A83247}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Order.Persistence", "CourseManagementSystemMicroservice.Order.Persistence\CourseManagementSystemMicroservice.Order.Persistence.csproj", "{ABA1E84A-27DA-4536-87F5-529A64D4EF71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseManagementSystemMicroservice.Order.Persistence", "CourseManagementSystemMicroservice.Order.Persistence\CourseManagementSystemMicroservice.Order.Persistence.csproj", "{ABA1E84A-27DA-4536-87F5-529A64D4EF71}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "payment", "payment", "{0A7EA1AE-99A3-48F2-BD5B-A08420A622BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseManagementSystemMicroservice.Payment.Api", "CourseManagementSystemMicroservice.Payment.Api\CourseManagementSystemMicroservice.Payment.Api.csproj", "{9713338E-2613-4365-ADE6-BD011B6BB2DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,10 @@ Global
 		{ABA1E84A-27DA-4536-87F5-529A64D4EF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABA1E84A-27DA-4536-87F5-529A64D4EF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABA1E84A-27DA-4536-87F5-529A64D4EF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9713338E-2613-4365-ADE6-BD011B6BB2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9713338E-2613-4365-ADE6-BD011B6BB2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9713338E-2613-4365-ADE6-BD011B6BB2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9713338E-2613-4365-ADE6-BD011B6BB2DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +123,8 @@ Global
 		{6434C2DB-8913-4D00-957C-6754C077E675} = {128D7506-2E24-40F2-B645-D13FF6703DD3}
 		{51C5ECE2-1535-4C0E-813A-B23BF0A83247} = {128D7506-2E24-40F2-B645-D13FF6703DD3}
 		{ABA1E84A-27DA-4536-87F5-529A64D4EF71} = {55CF891E-1F6C-4783-A991-5173BDDAF29A}
+		{0A7EA1AE-99A3-48F2-BD5B-A08420A622BC} = {86FB5769-9CFC-4146-BE22-8403DAF820F8}
+		{9713338E-2613-4365-ADE6-BD011B6BB2DE} = {0A7EA1AE-99A3-48F2-BD5B-A08420A622BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09ED23F3-9934-40A4-8AC9-E007BCD92C25}
