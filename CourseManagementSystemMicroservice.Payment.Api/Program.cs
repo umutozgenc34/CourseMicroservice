@@ -1,4 +1,5 @@
 using CourseManagementSystemMicroservice.Payment.Api;
+using CourseManagementSystemMicroservice.Payment.Api.Features.Payment;
 using CourseManagementSystemMicroservice.Payment.Api.Repositories;
 using CourseManagementSystemMicroservice.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 var app = builder.Build();
+
+app.AddPaymentGroupEndpointExt(app.AddVersionSetExtension());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
