@@ -6,15 +6,15 @@ using MediatR;
 namespace CourseManagementSystemMicroservice.Payment.Api.Features.Payment.Create;
 
 public class CreatePaymentCommandHandler(AppDbContext context,IIdentityService identityService) : 
-    IRequestHandler<CreatePaymentCommand, ServiceResult>
+    IRequestHandler<CreatePaymentCommand, ServiceResult<Guid>>
 {
-    public async Task<ServiceResult> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
+    public async Task<ServiceResult<Guid>> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
     {
        var(isSuccess, errorMessage) = await ExternalPaymentProcessAsync(request.CardNumber, request.CardHolderName,
             request.CardExpirationDate, request.CardSecurityCode, request.amount);
 
         if (!isSuccess)
-            return ServiceResult.Error("Payment failed.", errorMessage!,System.Net.HttpStatusCode.BadRequest);
+            return ServiceResult<Guid>.Error("Payment failed.", errorMessage!,System.Net.HttpStatusCode.BadRequest);
 
         var userId = identityService.GetUserId;
         var newPayment = new Repositories.Payment(userId,request.OrderCode,request.amount);
@@ -22,7 +22,7 @@ public class CreatePaymentCommandHandler(AppDbContext context,IIdentityService i
 
         context.Payments.Add(newPayment);
         await context.SaveChangesAsync(cancellationToken);
-        return ServiceResult.SuccessAsNoContent();
+        return ServiceResult<Guid>.SuccessAsOk(newPayment.Id);
     }
 
     private async Task<(bool isSuccess,string? errorMessage)> ExternalPaymentProcessAsync(string cardNumber,string cardHolderName,
